@@ -150,7 +150,7 @@ app.put("/api/participantes/:id", async (req, res) => {
         );
         res.json(resultado.rows);
     } catch (error) {
-        console.error("Error al actualizar participante:", error);
+        console.error("Error al actualizar participante:", error); 
         res.send("Error en el servidor");
     }
 });
