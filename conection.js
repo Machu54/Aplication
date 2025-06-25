@@ -1,16 +1,17 @@
-const {Pool} = require ('pg');
+const mongoose = require('mongoose');
 require('dotenv').config();
-const pool = new Pool({
-    user: process.env.USER,
-    password: process.env.PASS,
-    host: process.env.HOST,
-    port: 5432,
-    database: process.env.DATABASE,
-    ssl:true
 
-});
+const mongoUrl = process.env.MONGO_URL;
 
+mongoose.connect(mongoUrl);
+
+const collectionsh = new mongoose.Schema({
+  categoria: String,
+  garantia: String,
+  precio: Number,
+  marca: String
+}, { versionKey: false });
 
 module.exports = {
-    query: (text, params) => pool.query(text, params)
-    };
+  coleccionmodelo: mongoose.model("productos", collectionsh)
+};
